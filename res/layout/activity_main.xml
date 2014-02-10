@@ -3,11 +3,11 @@
  	<LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:orientation="vertical">
   		<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:padding="16dp" android:text="转圈："/>
   		<FrameLayout android:layout_width="match_parent" android:layout_height="250dp">
-	  		<me.xiaopan.android.viewplayer.PagerPlayer android:id="@+id/pagerPlayer_picturePlayer_circle" android:layout_width="match_parent" android:layout_height="250dp" />
+	  		<me.xiaopan.android.viewplayer.ViewPlayer android:id="@+id/pagerPlayer_picturePlayer_circle" android:layout_width="match_parent" android:layout_height="250dp" />
   			<me.xiaopan.android.viewplayer.sample.PointPlayIndicator android:id="@+id/indiccator" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="bottom|center_horizontal"/>	    
   		</FrameLayout>
 
 	    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:padding="16dp" android:text="摇摆："/>
-  		<me.xiaopan.android.viewplayer.PagerPlayer android:id="@+id/pagerPlayer_picturePlayer_swing" android:layout_width="match_parent" android:layout_height="250dp"/>
+  		<me.xiaopan.android.viewplayer.ViewPlayer android:id="@+id/pagerPlayer_picturePlayer_swing" android:layout_width="match_parent" android:layout_height="250dp"/>
  	</LinearLayout>
 </ScrollView>

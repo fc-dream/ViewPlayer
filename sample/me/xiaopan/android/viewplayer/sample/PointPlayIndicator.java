@@ -16,7 +16,6 @@
 package me.xiaopan.android.viewplayer.sample;
 
 import me.xiaopan.android.viewplayer.R;
-import me.xiaopan.android.viewplayer.ViewPlayIndicator;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.Gravity;
@@ -24,7 +23,10 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-public class PointPlayIndicator extends ViewPlayIndicator {
+/**
+ * 点状的播放指示器
+ */
+public class PointPlayIndicator extends LinearLayout {
 	private int lastCheckedPosition;//上次选中的图标的位置
 	private LinearLayout pointsLayout;
 	
@@ -36,8 +38,11 @@ public class PointPlayIndicator extends ViewPlayIndicator {
 		super(context, attrs);
 	}
 
-	@Override
-	public void onInit(int size) {
+	/**
+	 * 初始化
+	 * @param size
+	 */
+	public void init(int size) {
 		setLayoutParams(new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
 		setGravity(Gravity.BOTTOM);
 		
@@ -58,13 +63,13 @@ public class PointPlayIndicator extends ViewPlayIndicator {
 		addView(pointsLayout);
 	}
 
-	@Override
-	public void onItemSelected(int selectedItemPosition) {
-		//先将上一个取消
-		((ImageView) (pointsLayout.getChildAt(lastCheckedPosition))).setSelected(false);
-		//再将当前的选中
-		((ImageView) (pointsLayout.getChildAt(selectedItemPosition))).setSelected(true);
-		//记录本次选中的
-		lastCheckedPosition = selectedItemPosition;
+	/**
+	 * 选中
+	 * @param itemPosition
+	 */
+	public void selected(int itemPosition) {
+		((ImageView) (pointsLayout.getChildAt(lastCheckedPosition))).setSelected(false);//先将上一个取消
+		((ImageView) (pointsLayout.getChildAt(itemPosition))).setSelected(true);//再将当前的选中
+		lastCheckedPosition = itemPosition;//记录本次选中的
 	}
 }

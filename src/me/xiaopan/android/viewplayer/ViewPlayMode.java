@@ -17,9 +17,9 @@
 package me.xiaopan.android.viewplayer;
 
 /**
- * 播放模式
+ * View播放模式
  */
-public enum PlayMode {
+public enum ViewPlayMode {
 	/**
 	 * 转圈
 	 */

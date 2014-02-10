@@ -11,42 +11,45 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Interpolator;
 import android.widget.Scroller;
 
-public class PagerPlayer extends ViewPager {
+/**
+ * View播放器
+ */
+public class ViewPlayer extends ViewPager {
 	private boolean playing;	//播放中
-	private PlayController playController;	//播放控制器
+	private ViewPlayController viewPlayController;	//播放控制器
 
-	public PagerPlayer(Context context, AttributeSet attrs) {
+	public ViewPlayer(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		setAnimationDuration(500);
 	}
 
-	public PagerPlayer(Context context) {
+	public ViewPlayer(Context context) {
 		super(context);
 	}
 	
 	@Override
 	public void setAdapter(PagerAdapter arg0) {
-		if(!(arg0 instanceof PagerPlayAdapterInterface)){
+		if(!(arg0 instanceof ViewPlayAdapterInterface)){
 			throw new IllegalArgumentException("适配器必须继实现PagerPlayAdapterInterface接口");
 		}
 
 		super.setAdapter(arg0);
 		if(arg0 != null && arg0.getCount() > 0){
 			removeAllViews();
-			if(playController == null){
-				playController = new PlayController(this);
+			if(viewPlayController == null){
+				viewPlayController = new ViewPlayController(this);
 			}
-			playController.reset();
+			viewPlayController.reset();
 		}
 	}
 	
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
-		if(playController != null && playing){
+		if(viewPlayController != null && playing){
 			switch (event.getAction()) {
-				case MotionEvent.ACTION_DOWN: playController.stop(); break;
-				case MotionEvent.ACTION_UP: playController.start(); break;
-				case MotionEvent.ACTION_CANCEL: playController.start(); break;
+				case MotionEvent.ACTION_DOWN: viewPlayController.stop(); break;
+				case MotionEvent.ACTION_UP: viewPlayController.start(); break;
+				case MotionEvent.ACTION_CANCEL: viewPlayController.start(); break;
 				default: break;
 			}
 		}
@@ -65,8 +68,8 @@ public class PagerPlayer extends ViewPager {
 	 * 启动
 	 */
 	public void start(){
-		if(playController != null && !playing){
-			playController.start();
+		if(viewPlayController != null && !playing){
+			viewPlayController.start();
 			playing = true;
 		}
 	}
@@ -75,8 +78,8 @@ public class PagerPlayer extends ViewPager {
 	 * 停止
 	 */
 	public void stop(){
-		if(playController != null && playing){
-			playController.stop();
+		if(viewPlayController != null && playing){
+			viewPlayController.stop();
 			playing = false;
 		}
 	}
@@ -85,8 +88,8 @@ public class PagerPlayer extends ViewPager {
 	 * 重置
 	 */
 	public void reset(){
-		if(playController != null){
-			playController.reset();
+		if(viewPlayController != null){
+			viewPlayController.reset();
 		}
 	}
 
@@ -94,13 +97,13 @@ public class PagerPlayer extends ViewPager {
 	 * 设置播放模式
 	 * @param playMode
 	 */
-	public void setPlayMode(PlayMode playMode) {
-		if(playController != null){
-			playController.setPlayMode(playMode);
+	public void setPlayMode(ViewPlayMode playMode) {
+		if(viewPlayController != null){
+			viewPlayController.setViewPlayMode(playMode);
 		}
 
 		if(getAdapter() != null){
-			((PagerPlayAdapterInterface) getAdapter()).setPlayMode(playMode);
+			((ViewPlayAdapterInterface) getAdapter()).setViewPlayMode(playMode);
 			getAdapter().notifyDataSetChanged();
 		}
 	}
@@ -111,8 +114,8 @@ public class PagerPlayer extends ViewPager {
 	 * @return 真实位置
 	 */
 	public int getRealPosition(int position){
-		if(getAdapter() != null && getAdapter() instanceof PagerPlayAdapterInterface){
-			return ((PagerPlayAdapterInterface) getAdapter()).getRealPosition(position);
+		if(getAdapter() != null && getAdapter() instanceof ViewPlayAdapterInterface){
+			return ((ViewPlayAdapterInterface) getAdapter()).getRealPosition(position);
 		}else{
 			return position;
 		}
@@ -165,8 +168,8 @@ public class PagerPlayer extends ViewPager {
 	 * @param switchSpace 切换间隔
 	 */
 	public void setSwitchSpace(int switchSpace) {
-		if(playController != null){
-			playController.setSwitchSpace(switchSpace);
+		if(viewPlayController != null){
+			viewPlayController.setSwitchSpace(switchSpace);
 		}
 	}
 }

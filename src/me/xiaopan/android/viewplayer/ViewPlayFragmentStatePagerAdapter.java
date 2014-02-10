@@ -4,16 +4,19 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-public abstract class PagerPlayFragmentAdapter extends FragmentStatePagerAdapter implements PagerPlayAdapterInterface{
-	private PlayMode playMode = PlayMode.SWING;//播放模式，默认是从左往右转圈
+/**
+ * View播放适配器
+ */
+public abstract class ViewPlayFragmentStatePagerAdapter extends FragmentStatePagerAdapter implements ViewPlayAdapterInterface{
+	private ViewPlayMode viewPlayMode = ViewPlayMode.SWING;//播放模式，默认是从左往右转圈
 
-	public PagerPlayFragmentAdapter(FragmentManager fm) {
+	public ViewPlayFragmentStatePagerAdapter(FragmentManager fm) {
 		super(fm);
 	}
 	
 	@Override
 	public final int getCount() {
-		switch(playMode){
+		switch(viewPlayMode){
 			case CIRCLE : 
 				if(getRealCount() > 1){
 					return Integer.MAX_VALUE;
@@ -29,7 +32,7 @@ public abstract class PagerPlayFragmentAdapter extends FragmentStatePagerAdapter
 	
 	@Override
 	public int getRealPosition(int position){
-		switch(playMode){
+		switch(viewPlayMode){
 			case CIRCLE : 
 				return position % getRealCount();
 			case SWING :
@@ -52,12 +55,12 @@ public abstract class PagerPlayFragmentAdapter extends FragmentStatePagerAdapter
 	public abstract Fragment getRealItem(int position);
 
 	@Override
-	public PlayMode getPlayMode() {
-		return playMode;
+	public ViewPlayMode getViewPlayMode() {
+		return viewPlayMode;
 	}
 
 	@Override
-	public void setPlayMode(PlayMode playMode) {
-		this.playMode = playMode;
+	public void setViewPlayMode(ViewPlayMode viewPlayMode) {
+		this.viewPlayMode = viewPlayMode;
 	}
 }

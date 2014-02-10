@@ -1,6 +1,9 @@
 package me.xiaopan.android.viewplayer;
 
-public interface PagerPlayAdapterInterface{
+/**
+ * View播放适配器接口
+ */
+public interface ViewPlayAdapterInterface{
 	
 	/**
 	 * 获取真实数量
@@ -19,11 +22,11 @@ public interface PagerPlayAdapterInterface{
 	 * 获取播放模式
 	 * @return
 	 */
-	public PlayMode getPlayMode();
+	public ViewPlayMode getViewPlayMode();
 
 	/**
 	 * 设置播放模式
-	 * @param playMode
+	 * @param viewPlayMode
 	 */
-	public void setPlayMode(PlayMode playMode);
+	public void setViewPlayMode(ViewPlayMode viewPlayMode);
 }

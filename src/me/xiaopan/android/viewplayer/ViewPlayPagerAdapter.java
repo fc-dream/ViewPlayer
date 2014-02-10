@@ -3,12 +3,15 @@ package me.xiaopan.android.viewplayer;
 import android.support.v4.view.PagerAdapter;
 import android.view.ViewGroup;
 
-public abstract class PagerPlayAdapter extends PagerAdapter implements PagerPlayAdapterInterface{
-	private PlayMode playMode = PlayMode.CIRCLE;//播放模式，默认是从左往右转圈
+/**
+ * View播放适配器
+ */
+public abstract class ViewPlayPagerAdapter extends PagerAdapter implements ViewPlayAdapterInterface{
+	private ViewPlayMode viewPlayMode = ViewPlayMode.CIRCLE;//播放模式，默认是从左往右转圈
 	
 	@Override
 	public final int getCount() {
-		switch(playMode){
+		switch(viewPlayMode){
 			case CIRCLE : 
 				if(getRealCount() > 1){
 					return Integer.MAX_VALUE;
@@ -34,7 +37,7 @@ public abstract class PagerPlayAdapter extends PagerAdapter implements PagerPlay
 	
 	@Override
 	public int getRealPosition(int position){
-		switch(playMode){
+		switch(viewPlayMode){
 			case CIRCLE : 
 				return position % getRealCount();
 			case SWING :
@@ -61,12 +64,12 @@ public abstract class PagerPlayAdapter extends PagerAdapter implements PagerPlay
 	protected abstract void destroyRealItem(ViewGroup container, int position, Object object);
 
 	@Override
-	public PlayMode getPlayMode() {
-		return playMode;
+	public ViewPlayMode getViewPlayMode() {
+		return viewPlayMode;
 	}
 
 	@Override
-	public void setPlayMode(PlayMode playMode) {
-		this.playMode = playMode;
+	public void setViewPlayMode(ViewPlayMode viewPlayMode) {
+		this.viewPlayMode = viewPlayMode;
 	}
 }

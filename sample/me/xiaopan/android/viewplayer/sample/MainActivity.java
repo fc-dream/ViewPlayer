@@ -3,9 +3,9 @@ package me.xiaopan.android.viewplayer.sample;
 import java.util.ArrayList;
 import java.util.List;
 
-import me.xiaopan.android.viewplayer.PagerPlayer;
-import me.xiaopan.android.viewplayer.PlayMode;
 import me.xiaopan.android.viewplayer.R;
+import me.xiaopan.android.viewplayer.ViewPlayMode;
+import me.xiaopan.android.viewplayer.ViewPlayer;
 import me.xiaopan.easy.imageloader.ImageLoader;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -15,8 +15,8 @@ import android.support.v4.view.ViewPager.PageTransformer;
 import android.view.View;
 
 public class MainActivity extends FragmentActivity {
-	private PagerPlayer pagerPlayerCircle;
-	private PagerPlayer pagerPlayerSwing;
+	private ViewPlayer pagerPlayerCircle;
+	private ViewPlayer pagerPlayerSwing;
 	private List<String> pictures;
 	private PointPlayIndicator pointPlayIndicator;
 	
@@ -24,8 +24,8 @@ public class MainActivity extends FragmentActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		pagerPlayerCircle = (PagerPlayer) findViewById(R.id.pagerPlayer_picturePlayer_circle);
-		pagerPlayerSwing = (PagerPlayer) findViewById(R.id.pagerPlayer_picturePlayer_swing);
+		pagerPlayerCircle = (ViewPlayer) findViewById(R.id.pagerPlayer_picturePlayer_circle);
+		pagerPlayerSwing = (ViewPlayer) findViewById(R.id.pagerPlayer_picturePlayer_swing);
 		pointPlayIndicator = (PointPlayIndicator) findViewById(R.id.indiccator);
 		
 		pictures = new ArrayList<String>();
@@ -35,12 +35,12 @@ public class MainActivity extends FragmentActivity {
 		
 		ImageLoader.getInstance().init(getBaseContext());
 		
-		pointPlayIndicator.onInit(pictures.size());
-		pointPlayIndicator.onItemSelected(0);
+		pointPlayIndicator.init(pictures.size());
+		pointPlayIndicator.selected(0);
 		pagerPlayerCircle.setOnPageChangeListener(new OnPageChangeListener() {
 			@Override
 			public void onPageSelected(int arg0) {
-				pointPlayIndicator.onItemSelected(pagerPlayerCircle.getRealPosition(arg0));
+				pointPlayIndicator.selected(pagerPlayerCircle.getRealPosition(arg0));
 			}
 			
 			@Override
@@ -53,11 +53,11 @@ public class MainActivity extends FragmentActivity {
 				
 			}
 		});
-		pagerPlayerCircle.setAdapter(new PicturePlayFragmentAdapter(getSupportFragmentManager(), pictures));
-		pagerPlayerCircle.setPlayMode(PlayMode.CIRCLE);
+		pagerPlayerCircle.setAdapter(new PicturePlayFragmentStatePagerAdapter(getSupportFragmentManager(), pictures));
+		pagerPlayerCircle.setPlayMode(ViewPlayMode.CIRCLE);
 		
-		pagerPlayerSwing.setAdapter(new PicturePlayFragmentAdapter(getSupportFragmentManager(), pictures));
-		pagerPlayerSwing.setPlayMode(PlayMode.SWING);
+		pagerPlayerSwing.setAdapter(new PicturePlayFragmentStatePagerAdapter(getSupportFragmentManager(), pictures));
+		pagerPlayerSwing.setPlayMode(ViewPlayMode.SWING);
 		pagerPlayerSwing.setPageTransformer(true, new DepthPageTransformer());
 	}
 

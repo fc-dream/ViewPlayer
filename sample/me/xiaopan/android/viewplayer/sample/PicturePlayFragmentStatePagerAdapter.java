@@ -2,7 +2,7 @@ package me.xiaopan.android.viewplayer.sample;
 
 import java.util.List;
 
-import me.xiaopan.android.viewplayer.PagerPlayFragmentAdapter;
+import me.xiaopan.android.viewplayer.ViewPlayFragmentStatePagerAdapter;
 import me.xiaopan.easy.imageloader.ImageLoader;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -13,12 +13,15 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
 
-public class PicturePlayFragmentAdapter extends PagerPlayFragmentAdapter {
+/**
+ * 图片播放适配器
+ */
+public class PicturePlayFragmentStatePagerAdapter extends ViewPlayFragmentStatePagerAdapter {
 	private List<String> pictures;//图片列表
 
-	public PicturePlayFragmentAdapter(FragmentManager fm, List<String> pictures) {
+	public PicturePlayFragmentStatePagerAdapter(FragmentManager fm, List<String> pictureUrls) {
 		super(fm);
-		this.pictures = pictures;
+		this.pictures = pictureUrls;
 	}
 
 	@Override
