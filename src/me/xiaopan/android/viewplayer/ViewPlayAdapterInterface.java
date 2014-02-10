@@ -3,7 +3,7 @@ package me.xiaopan.android.viewplayer;
 /**
  * View播放适配器接口
  */
-public interface ViewPlayAdapterInterface{
+interface ViewPlayAdapterInterface{
 	
 	/**
 	 * 获取真实数量

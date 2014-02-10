@@ -3,7 +3,7 @@ package me.xiaopan.android.viewplayer;
 /**
  * View播放控制器
  */
-public class ViewPlayController implements Runnable{
+class ViewPlayController implements Runnable{
 	private int switchSpace = 3000;//切换间隔
 	private boolean currentTowardsTheRight = true;//当前向右播放
 	private ViewPlayMode viewPlayMode = ViewPlayMode.SWING;//播放模式，默认转圈
