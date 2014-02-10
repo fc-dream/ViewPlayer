@@ -17,18 +17,13 @@
 package me.xiaopan.android.viewplayer;
 
 /**
- * 播放方式
+ * 播放模式
  */
-public enum PlayWay {
+public enum PlayMode {
 	/**
-	 * 从右往左转圈
+	 * 转圈
 	 */
-	CIRCLE_RIGHT_TO_LEFT, 
-	
-	/**
-	 * 从左往右转圈
-	 */
-	CIRCLE_LEFT_TO_RIGHT, 
+	CIRCLE, 
 	
 	/**
 	 * 摇摆

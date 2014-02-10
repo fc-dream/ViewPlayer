@@ -3,71 +3,72 @@ package me.xiaopan.android.viewplayer.sample;
 import java.util.ArrayList;
 import java.util.List;
 
-import me.xiaopan.android.viewplayer.PlayWay;
+import me.xiaopan.android.viewplayer.PagerPlayer;
+import me.xiaopan.android.viewplayer.PlayMode;
 import me.xiaopan.android.viewplayer.R;
 import me.xiaopan.easy.imageloader.ImageLoader;
-import android.app.Activity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.Toast;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.ViewPager.OnPageChangeListener;
 
-public class MainActivity extends Activity {
-	private PointViewPlayer picturePlayerCircleLeftToRight;
-	private PointViewPlayer picturePlayerCircleRightToLeft;
-	private PointViewPlayer picturePlayerSwingLeftToRight;
-	private PointViewPlayer picturePlayerSwingRightToLeft;
+public class MainActivity extends FragmentActivity {
+	private PagerPlayer pagerPlayerCircle;
+	private PagerPlayer pagerPlayerSwing;
 	private List<String> pictures;
+	private PointPlayIndicator pointPlayIndicator;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		picturePlayerCircleLeftToRight = (PointViewPlayer) findViewById(R.id.picturePlayer_picturePlayer_circle_leftToRight);
-		picturePlayerCircleRightToLeft = (PointViewPlayer) findViewById(R.id.picturePlayer_picturePlayer_circle_rightToLeft);
-		picturePlayerSwingLeftToRight = (PointViewPlayer) findViewById(R.id.picturePlayer_picturePlayer_swing_leftToRight);
-		picturePlayerSwingRightToLeft = (PointViewPlayer) findViewById(R.id.picturePlayer_picturePlayer_swing_rightToLeft);
-		picturePlayerCircleLeftToRight.setOnItemClickListener(new OnItemClickListener() {
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				Toast.makeText(getBaseContext(), ""+position, Toast.LENGTH_SHORT).show();
-			}
-		});
+		pagerPlayerCircle = (PagerPlayer) findViewById(R.id.pagerPlayer_picturePlayer_circle);
+		pagerPlayerSwing = (PagerPlayer) findViewById(R.id.pagerPlayer_picturePlayer_swing);
+		pointPlayIndicator = (PointPlayIndicator) findViewById(R.id.indiccator);
+		
 		pictures = new ArrayList<String>();
 		for(String url : getResources().getStringArray(R.array.autoPlayGallery_urls2)){
 			pictures.add(url);
 		}
 		
 		ImageLoader.getInstance().init(getBaseContext());
-		picturePlayerCircleLeftToRight.setViewPlayAdapter(new PicturePlayAdapter(getBaseContext(), pictures));
-		picturePlayerCircleLeftToRight.setPlayWay(PlayWay.CIRCLE_LEFT_TO_RIGHT);
 		
-		picturePlayerCircleRightToLeft.setViewPlayAdapter(new PicturePlayAdapter(getBaseContext(), pictures));
-		picturePlayerCircleRightToLeft.setPlayWay(PlayWay.CIRCLE_RIGHT_TO_LEFT);
+		pointPlayIndicator.onInit(pictures.size());
+		pointPlayIndicator.onItemSelected(0);
+		pagerPlayerCircle.setOnPageChangeListener(new OnPageChangeListener() {
+			@Override
+			public void onPageSelected(int arg0) {
+				pointPlayIndicator.onItemSelected(pagerPlayerCircle.getRealPosition(arg0));
+			}
+			
+			@Override
+			public void onPageScrolled(int arg0, float arg1, int arg2) {
+				
+			}
+			
+			@Override
+			public void onPageScrollStateChanged(int arg0) {
+				
+			}
+		});
+		pagerPlayerCircle.setAdapter(new PicturePlayFragmentAdapter(getSupportFragmentManager(), pictures));
+		pagerPlayerCircle.setPlayMode(PlayMode.CIRCLE);
 		
-		picturePlayerSwingLeftToRight.setViewPlayAdapter(new PicturePlayAdapter(getBaseContext(), pictures));
-		picturePlayerSwingLeftToRight.setPlayWay(PlayWay.SWING);
-		
-		picturePlayerSwingRightToLeft.setViewPlayAdapter(new PicturePlayAdapter(getBaseContext(), pictures));
-//		picturePlayerSwingRightToLeft.setPlayWay(PlayWay.SWING_RIGHT_TO_LEFT);
+		pagerPlayerSwing.setAdapter(new PicturePlayFragmentAdapter(getSupportFragmentManager(), pictures));
+		pagerPlayerSwing.setPlayMode(PlayMode.SWING);
+		pagerPlayerSwing.setPageTransformer(true, new DepthPageTransformer());
 	}
 
 	@Override
 	public void onResume() {
-		picturePlayerCircleLeftToRight.startPaly();
-		picturePlayerCircleRightToLeft.startPaly();
-		picturePlayerSwingLeftToRight.startPaly();
-		picturePlayerSwingRightToLeft.startPaly();
+		pagerPlayerCircle.start();
+		pagerPlayerSwing.start();
 		super.onPause();
 	}
 
 	@Override
 	public void onPause() {
-		picturePlayerCircleLeftToRight.stopPaly();
-		picturePlayerCircleRightToLeft.stopPaly();
-		picturePlayerSwingLeftToRight.stopPaly();
-		picturePlayerSwingRightToLeft.stopPaly();
+		pagerPlayerCircle.stop();
+		pagerPlayerSwing.stop();
 		super.onPause();
 	}
 }

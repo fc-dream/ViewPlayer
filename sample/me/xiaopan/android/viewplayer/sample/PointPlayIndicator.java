@@ -20,6 +20,7 @@ import me.xiaopan.android.viewplayer.ViewPlayIndicator;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.Gravity;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -37,7 +38,7 @@ public class PointPlayIndicator extends ViewPlayIndicator {
 
 	@Override
 	public void onInit(int size) {
-		setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
+		setLayoutParams(new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
 		setGravity(Gravity.BOTTOM);
 		
 		//创建包括所有图标部分的布局
