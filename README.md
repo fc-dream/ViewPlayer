@@ -2,7 +2,7 @@
 
 这是Android上一个专门用于轮播各种View的项目
 
-![sample1](https://github.com/xiaopansky/Android-ViewPlayer/raw/master/docs/sample.png)
+![sample](https://github.com/xiaopansky/Android-ViewPlayer/raw/master/docs/sample.png)
 
 ##Downloads
 **[android-view-player-1.1.0.jar](https://github.com/xiaopansky/Android-ViewPlayer/raw/master/releases/android-view-player-1.1.0.jar)**
