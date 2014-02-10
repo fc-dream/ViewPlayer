@@ -17,6 +17,7 @@ import android.widget.Scroller;
 public class ViewPlayer extends ViewPager {
 	private boolean playing;	//播放中
 	private ViewPlayController viewPlayController;	//播放控制器
+	private OnSetAdapterListener onSetAdapterListener;
 
 	public ViewPlayer(Context context, AttributeSet attrs) {
 		super(context, attrs);
@@ -25,6 +26,7 @@ public class ViewPlayer extends ViewPager {
 
 	public ViewPlayer(Context context) {
 		super(context);
+		setAnimationDuration(500);
 	}
 	
 	@Override
@@ -40,6 +42,9 @@ public class ViewPlayer extends ViewPager {
 				viewPlayController = new ViewPlayController(this);
 			}
 			viewPlayController.reset();
+		}
+		if(onSetAdapterListener != null){
+			onSetAdapterListener.onSertAdapter();
 		}
 	}
 	
@@ -163,6 +168,10 @@ public class ViewPlayer extends ViewPager {
 	    }
 	}
 	
+	public void setOnSetAdapterListener(OnSetAdapterListener onSetAdapterListener) {
+		this.onSetAdapterListener = onSetAdapterListener;
+	}
+
 	/**
 	 * 设置切换间隔
 	 * @param switchSpace 切换间隔
@@ -171,5 +180,9 @@ public class ViewPlayer extends ViewPager {
 		if(viewPlayController != null){
 			viewPlayController.setSwitchSpace(switchSpace);
 		}
+	}
+	
+	public interface OnSetAdapterListener{
+		public void onSertAdapter();
 	}
 }

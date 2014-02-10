@@ -2,8 +2,8 @@ package me.xiaopan.android.viewplayer.sample;
 
 import java.util.List;
 
+import me.xiaopan.android.imageloader.ImageLoader;
 import me.xiaopan.android.viewplayer.ViewPlayFragmentStatePagerAdapter;
-import me.xiaopan.easy.imageloader.ImageLoader;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -43,7 +43,7 @@ public class PicturePlayFragmentStatePagerAdapter extends ViewPlayFragmentStateP
 		
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-			ImageView imageView = new ImageView(container.getContext());
+			ImageView imageView = new ImageView(getActivity().getBaseContext());
 			imageView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 			imageView.setScaleType(ScaleType.CENTER_CROP);
 			ImageLoader.getInstance().display(getArguments().getString(PARAM_REQUIRED_STRING_PICTURE_URL), imageView);

@@ -3,75 +3,53 @@ package me.xiaopan.android.viewplayer.sample;
 import java.util.ArrayList;
 import java.util.List;
 
+import me.xiaopan.android.imageloader.ImageLoader;
 import me.xiaopan.android.viewplayer.R;
 import me.xiaopan.android.viewplayer.ViewPlayMode;
-import me.xiaopan.android.viewplayer.ViewPlayer;
-import me.xiaopan.easy.imageloader.ImageLoader;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.support.v4.view.ViewPager.PageTransformer;
 import android.view.View;
 
 public class MainActivity extends FragmentActivity {
-	private ViewPlayer pagerPlayerCircle;
-	private ViewPlayer pagerPlayerSwing;
-	private List<String> pictures;
-	private PointPlayIndicator pointPlayIndicator;
+	private PointViewPlayer pointViewPlayerCircle;
+	private PointViewPlayer pointViewPlayerSwing;
+	private List<String> pictureUrls;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		pagerPlayerCircle = (ViewPlayer) findViewById(R.id.pagerPlayer_picturePlayer_circle);
-		pagerPlayerSwing = (ViewPlayer) findViewById(R.id.pagerPlayer_picturePlayer_swing);
-		pointPlayIndicator = (PointPlayIndicator) findViewById(R.id.indiccator);
-		
-		pictures = new ArrayList<String>();
-		for(String url : getResources().getStringArray(R.array.autoPlayGallery_urls2)){
-			pictures.add(url);
-		}
+		pointViewPlayerCircle = (PointViewPlayer) findViewById(R.id.pagerPlayer_picturePlayer_circle);
+		pointViewPlayerSwing = (PointViewPlayer) findViewById(R.id.pagerPlayer_picturePlayer_swing);
 		
 		ImageLoader.getInstance().init(getBaseContext());
+
+		pictureUrls = new ArrayList<String>();
+		for(String url : getResources().getStringArray(R.array.autoPlayGallery_urls2)){
+			pictureUrls.add(url);
+		}
 		
-		pointPlayIndicator.init(pictures.size());
-		pointPlayIndicator.selected(0);
-		pagerPlayerCircle.setOnPageChangeListener(new OnPageChangeListener() {
-			@Override
-			public void onPageSelected(int arg0) {
-				pointPlayIndicator.selected(pagerPlayerCircle.getRealPosition(arg0));
-			}
-			
-			@Override
-			public void onPageScrolled(int arg0, float arg1, int arg2) {
-				
-			}
-			
-			@Override
-			public void onPageScrollStateChanged(int arg0) {
-				
-			}
-		});
-		pagerPlayerCircle.setAdapter(new PicturePlayFragmentStatePagerAdapter(getSupportFragmentManager(), pictures));
-		pagerPlayerCircle.setPlayMode(ViewPlayMode.CIRCLE);
+		pointViewPlayerCircle.getViewPlayer().setAdapter(new PicturePlayFragmentStatePagerAdapter(getSupportFragmentManager(), pictureUrls));
+		pointViewPlayerCircle.getViewPlayer().setPlayMode(ViewPlayMode.CIRCLE);
 		
-		pagerPlayerSwing.setAdapter(new PicturePlayFragmentStatePagerAdapter(getSupportFragmentManager(), pictures));
-		pagerPlayerSwing.setPlayMode(ViewPlayMode.SWING);
-		pagerPlayerSwing.setPageTransformer(true, new DepthPageTransformer());
+		pointViewPlayerSwing.getViewPlayer().setAdapter(new PicturePlayFragmentStatePagerAdapter(getSupportFragmentManager(), pictureUrls));
+		pointViewPlayerSwing.getViewPlayer().setPlayMode(ViewPlayMode.SWING);
+		pointViewPlayerSwing.getViewPlayer().setPageTransformer(true, new DepthPageTransformer());
 	}
 
 	@Override
 	public void onResume() {
-		pagerPlayerCircle.start();
-		pagerPlayerSwing.start();
+		pointViewPlayerCircle.getViewPlayer().start();
+		pointViewPlayerSwing.getViewPlayer().start();
 		super.onPause();
 	}
 
 	@Override
 	public void onPause() {
-		pagerPlayerCircle.stop();
-		pagerPlayerSwing.stop();
+		pointViewPlayerCircle.getViewPlayer().stop();
+		pointViewPlayerSwing.getViewPlayer().stop();
 		super.onPause();
 	}
 	
