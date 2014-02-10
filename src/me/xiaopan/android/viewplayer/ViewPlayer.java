@@ -180,6 +180,10 @@ public class ViewPlayer extends ViewPager {
 	    }
 	}
 	
+	/**
+	 * 当设置适配器时的监听器
+	 * @param onSetAdapterListener
+	 */
 	public void setOnSetAdapterListener(OnSetAdapterListener onSetAdapterListener) {
 		this.onSetAdapterListener = onSetAdapterListener;
 	}

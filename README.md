@@ -66,6 +66,34 @@ viewPlayer.setAdapter(new PicturePlayFragmentStatePagerAdapter(getSupportFragmen
 viewPlayer.setPlayMode(ViewPlayMode.SWING);
 ```
 
+###3.启动或停止播放
+你需要在onResume()和onPause()的时候去启动和停止播放，示例如下：
+```java
+@Override
+public void onResume() {
+	viewPlayer.start();
+	super.onPause();
+}
+
+@Override
+public void onPause() {
+	viewPlayer.stop();
+	super.onPause();
+}
+```
+
+###4.扩展功能
+>* 调用start()方法启动播放
+>* 调用stop()方法停止播放
+>* 调用reset()方法充值播放位置
+>* 调用setPlayMode()方法设置播放模式（有转圈和摇摆两种可选）
+>* 调用isPlaying()判断是否正在播放
+>* 调用getRealCount()方法获取真实的Item个数
+>* 调用getRealPosition()方法获取真实的位置
+>* 调用setAnimationDuration()方法设置切换动画持续时间
+>* 调用setSwitchSpace()方法设置切换间隔时间
+>* 调用setOnSetAdapterListener()方法在监听适配器设置，并在之后进行一些初始化工作
+
 ##License
 ```java
 /*
