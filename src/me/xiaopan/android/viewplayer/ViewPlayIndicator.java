@@ -33,8 +33,6 @@ public abstract class ViewPlayIndicator extends LinearLayout {
 		super(context, attrs);
 	}
 	
-	public abstract void init(int size);
-
 	/**
 	 * 选中
 	 * @param selectedItemPosition

@@ -114,6 +114,18 @@ public class ViewPlayer extends ViewPager {
 	}
 	
 	/**
+	 * 获取真实数量
+	 * @return
+	 */
+	public int getRealCount(){
+		if(getAdapter() != null && getAdapter() instanceof ViewPlayAdapterInterface){
+			return ((ViewPlayAdapterInterface) getAdapter()).getRealCount();
+		}else{
+			return 0;
+		}
+	}
+	
+	/**
 	 * 获取真实位置
 	 * @param position
 	 * @return 真实位置

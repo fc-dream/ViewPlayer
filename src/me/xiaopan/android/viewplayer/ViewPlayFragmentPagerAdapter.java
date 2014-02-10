@@ -2,15 +2,15 @@ package me.xiaopan.android.viewplayer;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.app.FragmentPagerAdapter;
 
 /**
  * View播放适配器
  */
-public abstract class ViewPlayFragmentStatePagerAdapter extends FragmentStatePagerAdapter implements ViewPlayAdapterInterface{
+public abstract class ViewPlayFragmentPagerAdapter extends FragmentPagerAdapter implements ViewPlayAdapterInterface{
 	private ViewPlayMode viewPlayMode = ViewPlayMode.SWING;//播放模式，默认是转圈
-
-	public ViewPlayFragmentStatePagerAdapter(FragmentManager fm) {
+	
+	public ViewPlayFragmentPagerAdapter(FragmentManager fm) {
 		super(fm);
 	}
 	
@@ -31,7 +31,7 @@ public abstract class ViewPlayFragmentStatePagerAdapter extends FragmentStatePag
 	}
 	
 	@Override
-	public int getRealPosition(int position){
+	public final int getRealPosition(int position){
 		switch(viewPlayMode){
 			case CIRCLE : 
 				return position % getRealCount();

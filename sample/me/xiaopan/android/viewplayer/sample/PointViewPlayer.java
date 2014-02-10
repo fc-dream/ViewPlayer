@@ -11,7 +11,7 @@ import android.widget.FrameLayout;
 
 public class PointViewPlayer extends FrameLayout {
 	private ViewPlayer viewPlayer;
-	private ViewPlayIndicator viewPlayIndicator;
+	private PointViewPlayIndicator pointViewPlayIndicator;
 	
 	public PointViewPlayer(Context context, AttributeSet attrs) {
 		super(context, attrs);
@@ -28,16 +28,16 @@ public class PointViewPlayer extends FrameLayout {
 		viewPlayer.setId(viewPlayer.hashCode());
 		addView(viewPlayer);
 		
-		viewPlayIndicator = new PointViewPlayIndicator(getContext());
-		viewPlayIndicator.setId(viewPlayIndicator.hashCode());
+		pointViewPlayIndicator = new PointViewPlayIndicator(getContext());
+		pointViewPlayIndicator.setId(pointViewPlayIndicator.hashCode());
 		FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT);
 		layoutParams.gravity = Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL;
-		addView(viewPlayIndicator, layoutParams);
+		addView(pointViewPlayIndicator, layoutParams);
 		
 		viewPlayer.setOnPageChangeListener(new OnPageChangeListener() {
 			@Override
 			public void onPageSelected(int arg0) {
-				viewPlayIndicator.selected(viewPlayer.getRealPosition(arg0));
+				pointViewPlayIndicator.selected(viewPlayer.getRealPosition(arg0));
 			}
 			@Override
 			public void onPageScrolled(int arg0, float arg1, int arg2) {}
@@ -49,8 +49,8 @@ public class PointViewPlayer extends FrameLayout {
 			@Override
 			public void onSertAdapter() {
 				if(viewPlayer.getAdapter() != null){
-					viewPlayIndicator.init(viewPlayer.getAdapter().getCount());
-					viewPlayIndicator.selected(0);
+					pointViewPlayIndicator.init(viewPlayer.getRealCount());
+					pointViewPlayIndicator.selected(0);
 				}
 			}
 		});
@@ -61,6 +61,6 @@ public class PointViewPlayer extends FrameLayout {
 	}
 
 	public ViewPlayIndicator getViewPlayIndicator() {
-		return viewPlayIndicator;
+		return pointViewPlayIndicator;
 	}
 }
