@@ -8,7 +8,7 @@ import android.support.v4.app.FragmentPagerAdapter;
  * View播放适配器
  */
 public abstract class ViewPlayFragmentPagerAdapter extends FragmentPagerAdapter implements ViewPlayAdapterInterface{
-	private ViewPlayMode viewPlayMode = ViewPlayMode.SWING;//播放模式，默认是转圈
+	private ViewPlayMode viewPlayMode = ViewPlayMode.SWING;//播放模式，默认是摇摆
 	
 	public ViewPlayFragmentPagerAdapter(FragmentManager fm) {
 		super(fm);

@@ -7,7 +7,7 @@ import android.view.ViewGroup;
  * View播放适配器
  */
 public abstract class ViewPlayPagerAdapter extends PagerAdapter implements ViewPlayAdapterInterface{
-	private ViewPlayMode viewPlayMode = ViewPlayMode.CIRCLE;//播放模式，默认是转圈
+	private ViewPlayMode viewPlayMode = ViewPlayMode.SWING;//播放模式，默认是摇摆
 	
 	@Override
 	public final int getCount() {
