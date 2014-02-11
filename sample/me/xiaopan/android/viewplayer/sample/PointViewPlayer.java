@@ -1,5 +1,6 @@
 package me.xiaopan.android.viewplayer.sample;
 
+import me.xiaopan.android.viewplayer.R;
 import me.xiaopan.android.viewplayer.ViewPlayIndicator;
 import me.xiaopan.android.viewplayer.ViewPlayer;
 import me.xiaopan.android.viewplayer.ViewPlayer.OnSetAdapterListener;
@@ -11,7 +12,7 @@ import android.widget.FrameLayout;
 
 public class PointViewPlayer extends FrameLayout {
 	private ViewPlayer viewPlayer;
-	private PointViewPlayIndicator pointViewPlayIndicator;
+	private ViewPlayIndicator pointViewPlayIndicator;
 	
 	public PointViewPlayer(Context context, AttributeSet attrs) {
 		super(context, attrs);
@@ -28,8 +29,9 @@ public class PointViewPlayer extends FrameLayout {
 		viewPlayer.setId(viewPlayer.hashCode());
 		addView(viewPlayer);
 		
-		pointViewPlayIndicator = new PointViewPlayIndicator(getContext());
+		pointViewPlayIndicator = new ViewPlayIndicator(getContext());
 		pointViewPlayIndicator.setId(pointViewPlayIndicator.hashCode());
+		pointViewPlayIndicator.setIndicatorDrawableResId(R.drawable.selector_radio_play_indicator);
 		FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT);
 		layoutParams.gravity = Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL;
 		addView(pointViewPlayIndicator, layoutParams);
@@ -49,7 +51,7 @@ public class PointViewPlayer extends FrameLayout {
 			@Override
 			public void onSertAdapter() {
 				if(viewPlayer.getAdapter() != null){
-					pointViewPlayIndicator.init(viewPlayer.getRealCount());
+					pointViewPlayIndicator.initIndicator(viewPlayer.getRealCount());
 					pointViewPlayIndicator.selected(0);
 				}
 			}

@@ -17,13 +17,16 @@ package me.xiaopan.android.viewplayer;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 /**
  * View播放指示器
  */
-public abstract class ViewPlayIndicator extends LinearLayout {
+public class ViewPlayIndicator extends LinearLayout {
 	private int lastCheckedPosition;//上次选中的图标的位置
+	private int indicatorDrawableResdId;	//指示器图片
 	
 	public ViewPlayIndicator(Context context) {
 		super(context);
@@ -31,6 +34,31 @@ public abstract class ViewPlayIndicator extends LinearLayout {
 	
 	public ViewPlayIndicator(Context context, AttributeSet attrs) {
 		super(context, attrs);
+	}
+	
+	/**
+	 * 初始化指示器
+	 * @param size
+	 */
+	public void initIndicator(int size) {
+		if(size > 1 && indicatorDrawableResdId != 0){
+			setPadding(8, 8, 8, 8);
+			for(int w = 0; w < size; w++){//然后初始化所有的图标并将其放进存放图标的布局中
+				try{
+					ImageView image = new ImageView(getContext());
+					LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+					params.setMargins(8, 8, 8, 8);//设置指示器内图标的外边距
+					image.setLayoutParams(params);
+					image.setImageResource(indicatorDrawableResdId);
+					addView(image);
+				}catch(Throwable throwable){
+					throwable.printStackTrace();
+				}
+			}
+			setVisibility(View.VISIBLE);
+		}else{
+			setVisibility(View.GONE);
+		}
 	}
 	
 	/**
@@ -43,5 +71,13 @@ public abstract class ViewPlayIndicator extends LinearLayout {
 			(getChildAt(selectedItemPosition)).setSelected(true);//再将当前的选中
 			lastCheckedPosition = selectedItemPosition;//记录本次选中的
 		}
+	}
+
+	/**
+	 * 设置指示图标图片
+	 * @param indicatorDrawableResdId
+	 */
+	public void setIndicatorDrawableResId(int indicatorDrawableResdId) {
+		this.indicatorDrawableResdId = indicatorDrawableResdId;
 	}
 }

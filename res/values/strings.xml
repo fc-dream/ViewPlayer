@@ -2,6 +2,8 @@
 <resources>
 
     <string name="app_name">View Player</string>
+    <string name="formKey_zhuanquan">转圈：</string>
+    <string name="formKey_yaobai">摇摆：</string>
     
     <string-array name="autoPlayGallery_urls2">  
         <item>http://img.pconline.com.cn/images/upload/upc/tx/wallpaper/1311/12/c0/28564810_1384238874717_800x600.jpg</item>
