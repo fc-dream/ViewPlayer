@@ -13,16 +13,16 @@ import android.support.v4.view.ViewPager.PageTransformer;
 import android.view.View;
 
 public class MainActivity extends FragmentActivity {
-	private PointViewPlayer pointViewPlayerCircle;
-	private PointViewPlayer pointViewPlayerSwing;
+	private PictureViewPlayer pointViewPlayerCircle;
+	private PictureViewPlayer pointViewPlayerSwing;
 	private List<String> pictureUrls;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		pointViewPlayerCircle = (PointViewPlayer) findViewById(R.id.pagerPlayer_picturePlayer_circle);
-		pointViewPlayerSwing = (PointViewPlayer) findViewById(R.id.pagerPlayer_picturePlayer_swing);
+		pointViewPlayerCircle = (PictureViewPlayer) findViewById(R.id.pagerPlayer_picturePlayer_circle);
+		pointViewPlayerSwing = (PictureViewPlayer) findViewById(R.id.pagerPlayer_picturePlayer_swing);
 		
 		ImageLoader.getInstance().init(getBaseContext());
 
@@ -32,10 +32,9 @@ public class MainActivity extends FragmentActivity {
 		}
 		
 		pointViewPlayerCircle.getViewPlayer().setAdapter(new PicturePlayFragmentStatePagerAdapter(getSupportFragmentManager(), pictureUrls));
-		pointViewPlayerCircle.getViewPlayer().setPlayMode(ViewPlayMode.CIRCLE);
 		
 		pointViewPlayerSwing.getViewPlayer().setAdapter(new PicturePlayFragmentStatePagerAdapter(getSupportFragmentManager(), pictureUrls));
-		pointViewPlayerSwing.getViewPlayer().setPlayMode(ViewPlayMode.SWING);
+		pointViewPlayerSwing.getViewPlayer().setViewPlayMode(ViewPlayMode.SWING);
 		pointViewPlayerSwing.getViewPlayer().setPageTransformer(true, new DepthPageTransformer());
 	}
 

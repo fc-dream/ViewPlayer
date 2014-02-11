@@ -10,8 +10,8 @@
 ##Usage Guide
 ###1.创建你的PagerAdapter适配器
 实现方式有两种
->* 你可以选择继承ViewPlayPagerAdapter或者ViewPlayFragmentStatePagerAdapter或者ViewPlayFragmentPagerAdapter三个其中的一个
->* 你可以选择自己继承PagerAdapter并实现ViewPlayAdapterInterface接口，值得注意的是你必须实现ViewPlayAdapterInterface接口，否则将无法使用
+>* 1.继承ViewPlayPagerAdapter或者ViewPlayFragmentStatePagerAdapter
+>* 2.继承PagerAdapter并实现ViewPlayAdapterInterface接口（你必须实现此接口，否则将无法使用）
 
 示例如下：
 ```java

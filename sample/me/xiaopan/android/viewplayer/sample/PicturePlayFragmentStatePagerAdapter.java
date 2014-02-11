@@ -45,7 +45,7 @@ public class PicturePlayFragmentStatePagerAdapter extends ViewPlayFragmentStateP
 		public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 			ImageView imageView = new ImageView(getActivity().getBaseContext());
 			imageView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-			imageView.setScaleType(ScaleType.CENTER_CROP);
+			imageView.setScaleType(ScaleType.CENTER);
 			ImageLoader.getInstance().display(getArguments().getString(PARAM_REQUIRED_STRING_PICTURE_URL), imageView);
 			return imageView;
 		}

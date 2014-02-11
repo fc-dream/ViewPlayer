@@ -6,7 +6,7 @@ package me.xiaopan.android.viewplayer;
 class ViewPlayController implements Runnable{
 	private int switchSpace = 3000;//切换间隔
 	private boolean currentTowardsTheRight = true;//当前向右播放
-	private ViewPlayMode viewPlayMode = ViewPlayMode.SWING;//播放模式，默认是摇摆
+	private ViewPlayMode viewPlayMode = ViewPlayMode.CIRCLE;//播放模式，默认是转圈
 	private ViewPlayer viewPlayer;
 	
 	public ViewPlayController(ViewPlayer viewPager) {
@@ -68,7 +68,13 @@ class ViewPlayController implements Runnable{
 			int nextItem = 0;
 			if(viewPlayMode == ViewPlayMode.CIRCLE){
 				int realCount = ((ViewPlayAdapterInterface) viewPlayer.getAdapter()).getRealCount();
-				nextItem = realCount > 1?((Integer.MAX_VALUE/realCount)/2)*realCount:0;
+				if(realCount > 1){
+					nextItem = (viewPlayer.getAdapter().getCount()/2) -  ((viewPlayer.getAdapter().getCount()/2) % realCount);
+				}else{
+					nextItem = 0;
+				}
+			}else{
+				currentTowardsTheRight = true;
 			}
 			viewPlayer.setCurrentItem(nextItem, true);
 		}

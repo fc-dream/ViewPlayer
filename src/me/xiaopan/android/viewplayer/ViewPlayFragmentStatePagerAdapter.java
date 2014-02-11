@@ -8,7 +8,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
  * View播放适配器
  */
 public abstract class ViewPlayFragmentStatePagerAdapter extends FragmentStatePagerAdapter implements ViewPlayAdapterInterface{
-	private ViewPlayMode viewPlayMode = ViewPlayMode.SWING;//播放模式，默认是摇摆
+	private ViewPlayMode viewPlayMode = ViewPlayMode.CIRCLE;//播放模式，默认是转圈
 	
 	public ViewPlayFragmentStatePagerAdapter(FragmentManager fm) {
 		super(fm);
@@ -18,11 +18,7 @@ public abstract class ViewPlayFragmentStatePagerAdapter extends FragmentStatePag
 	public final int getCount() {
 		switch(viewPlayMode){
 			case CIRCLE : 
-				if(getRealCount() > 1){
-					return Integer.MAX_VALUE;
-				}else{
-					return getRealCount();
-				}
+				return getRealCount() > 1?getRealCount() * 50:getRealCount();
 			case SWING :
 				return getRealCount();
 			default : 

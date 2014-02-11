@@ -18,6 +18,7 @@ public class ViewPlayer extends ViewPager {
 	private boolean playing;	//播放中
 	private ViewPlayController viewPlayController;	//播放控制器
 	private OnSetAdapterListener onSetAdapterListener;
+	private ViewPlayMode viewPlayMode = ViewPlayMode.CIRCLE;//播放模式，默认是转圈
 
 	public ViewPlayer(Context context, AttributeSet attrs) {
 		super(context, attrs);
@@ -31,18 +32,18 @@ public class ViewPlayer extends ViewPager {
 	
 	@Override
 	public void setAdapter(PagerAdapter arg0) {
-		if(!(arg0 instanceof ViewPlayAdapterInterface)){
+		if(arg0 == null || !(arg0 instanceof ViewPlayAdapterInterface)){
 			throw new IllegalArgumentException("适配器必须继实现PagerPlayAdapterInterface接口");
 		}
 
 		super.setAdapter(arg0);
-		if(arg0 != null && arg0.getCount() > 0){
-			removeAllViews();
-			if(viewPlayController == null){
-				viewPlayController = new ViewPlayController(this);
-			}
-			viewPlayController.reset();
+		if(viewPlayController == null){
+			viewPlayController = new ViewPlayController(this);
 		}
+		viewPlayController.setViewPlayMode(viewPlayMode);
+		((ViewPlayAdapterInterface) arg0).setViewPlayMode(viewPlayMode);
+		arg0.notifyDataSetChanged();
+		viewPlayController.reset();
 		if(onSetAdapterListener != null){
 			onSetAdapterListener.onSertAdapter();
 		}
@@ -100,15 +101,18 @@ public class ViewPlayer extends ViewPager {
 
 	/**
 	 * 设置播放模式
-	 * @param playMode
+	 * @param viewPlayMode
 	 */
-	public void setPlayMode(ViewPlayMode playMode) {
+	public void setViewPlayMode(ViewPlayMode viewPlayMode) {
+		this.viewPlayMode = viewPlayMode;
+		
 		if(viewPlayController != null){
-			viewPlayController.setViewPlayMode(playMode);
+			viewPlayController.setViewPlayMode(viewPlayMode);
+			viewPlayController.reset();
 		}
 
 		if(getAdapter() != null){
-			((ViewPlayAdapterInterface) getAdapter()).setViewPlayMode(playMode);
+			((ViewPlayAdapterInterface) getAdapter()).setViewPlayMode(viewPlayMode);
 			getAdapter().notifyDataSetChanged();
 		}
 	}

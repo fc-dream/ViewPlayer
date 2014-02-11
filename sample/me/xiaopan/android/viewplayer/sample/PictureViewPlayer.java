@@ -10,16 +10,16 @@ import android.util.AttributeSet;
 import android.view.Gravity;
 import android.widget.FrameLayout;
 
-public class PointViewPlayer extends FrameLayout {
+public class PictureViewPlayer extends FrameLayout {
 	private ViewPlayer viewPlayer;
 	private ViewPlayIndicator pointViewPlayIndicator;
 	
-	public PointViewPlayer(Context context, AttributeSet attrs) {
+	public PictureViewPlayer(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		init();
 	}
 
-	public PointViewPlayer(Context context) {
+	public PictureViewPlayer(Context context) {
 		super(context);
 		init();
 	}
@@ -52,7 +52,7 @@ public class PointViewPlayer extends FrameLayout {
 			public void onSertAdapter() {
 				if(viewPlayer.getAdapter() != null){
 					pointViewPlayIndicator.initIndicator(viewPlayer.getRealCount());
-					pointViewPlayIndicator.selected(0);
+					pointViewPlayIndicator.selected(viewPlayer.getRealPosition(viewPlayer.getCurrentItem()));
 				}
 			}
 		});
