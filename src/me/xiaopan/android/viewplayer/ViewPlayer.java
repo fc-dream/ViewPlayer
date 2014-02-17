@@ -50,18 +50,18 @@ public class ViewPlayer extends ViewPager {
 	}
 	
 	@Override
-	public boolean onTouchEvent(MotionEvent event) {
-		if(viewPlayController != null && playing){
-			switch (event.getAction()) {
+	public boolean dispatchTouchEvent(MotionEvent ev) {
+		if(viewPlayController != null){
+			switch (ev.getAction()) {
 				case MotionEvent.ACTION_DOWN: viewPlayController.stop(); break;
 				case MotionEvent.ACTION_UP: viewPlayController.start(); break;
 				case MotionEvent.ACTION_CANCEL: viewPlayController.start(); break;
 				default: break;
 			}
 		}
-		return super.onTouchEvent(event);
+		return super.dispatchTouchEvent(ev);
 	}
-	
+
 	/**
 	 * 是否正在播放
 	 * @return

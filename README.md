@@ -1,11 +1,13 @@
-# ![Logo](https://github.com/xiaopansky/Android-ViewPlayer/raw/master/res/drawable-mdpi/ic_launcher.png) Android-ViewPlayer
+![Logo](https://github.com/xiaopansky/Android-ViewPlayer/raw/master/res/drawable-mdpi/ic_launcher.png) Android-ViewPlayer
+===============
 
-这是Android上一个专门用于轮播各种View的项目
+这是Android上一个专门用于轮播View的组件
 
 ![sample](https://github.com/xiaopansky/Android-ViewPlayer/raw/master/docs/sample.png)
 
-##Downloads
-**[android-view-player-1.1.0.jar](https://github.com/xiaopansky/Android-ViewPlayer/raw/master/releases/android-view-player-1.1.0.jar)**
+##Features
+>* ViewPlayer继承于ViewPager，所以你可以自定义切换效果
+>* 支持转圈循环播放和摇摆播放两种方式
 
 ##Usage Guide
 ###1.创建你的PagerAdapter适配器
@@ -93,6 +95,11 @@ public void onPause() {
 >* 调用setAnimationDuration()方法设置切换动画持续时间
 >* 调用setSwitchSpace()方法设置切换间隔时间
 >* 调用setOnSetAdapterListener()方法在监听适配器设置，并在之后进行一些初始化工作
+
+##Downloads
+**[android-view-player-1.1.1.jar](https://github.com/xiaopansky/Android-ViewPlayer/raw/master/releases/android-view-player-1.1.1.jar)**
+
+**[android-view-player-1.1.1-with-src.jar](https://github.com/xiaopansky/Android-ViewPlayer/raw/master/releases/android-view-player-1.1.1-with-src.jar)**
 
 ##License
 ```java
