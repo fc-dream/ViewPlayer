@@ -97,9 +97,9 @@ public void onPause() {
 >* 调用setOnSetAdapterListener()方法在监听适配器设置，并在之后进行一些初始化工作
 
 ##Downloads
-**[android-view-player-1.1.1.jar](https://github.com/xiaopansky/Android-ViewPlayer/raw/master/releases/android-view-player-1.1.1.jar)**
+**[android-view-player-1.1.2.jar](https://github.com/xiaopansky/Android-ViewPlayer/raw/master/releases/android-view-player-1.1.2.jar)**
 
-**[android-view-player-1.1.1-with-src.jar](https://github.com/xiaopansky/Android-ViewPlayer/raw/master/releases/android-view-player-1.1.1-with-src.jar)**
+**[android-view-player-1.1.2-with-src.jar](https://github.com/xiaopansky/Android-ViewPlayer/raw/master/releases/android-view-player-1.1.2-with-src.jar)**
 
 ##License
 ```java

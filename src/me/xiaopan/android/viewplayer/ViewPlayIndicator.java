@@ -41,6 +41,7 @@ public class ViewPlayIndicator extends LinearLayout {
 	 * @param size
 	 */
 	public void initIndicator(int size) {
+		removeAllViews();
 		if(size > 1 && indicatorDrawableResdId != 0){
 			setPadding(8, 8, 8, 8);
 			for(int w = 0; w < size; w++){//然后初始化所有的图标并将其放进存放图标的布局中
