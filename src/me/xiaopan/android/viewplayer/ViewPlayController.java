@@ -15,9 +15,10 @@ class ViewPlayController implements Runnable{
 
 	@Override
 	public void run() {
-		if(viewPlayer.getAdapter().getCount() > 1){
-			int nextItem = 0;
-			switch(viewPlayMode){
+		if(viewPlayer.isPlaying()){
+			if(viewPlayer.getAdapter().getCount() > 1){
+				int nextItem = 0;
+				switch(viewPlayMode){
 				case CIRCLE : 
 					nextItem = (viewPlayer.getCurrentItem()+1) % viewPlayer.getAdapter().getCount();
 					break;
@@ -39,25 +40,30 @@ class ViewPlayController implements Runnable{
 						}
 					}
 					break;
+				}
+				viewPlayer.setCurrentItem(nextItem, true);
 			}
-			viewPlayer.setCurrentItem(nextItem, true);
+			viewPlayer.postDelayed(this, switchSpace);
 		}
-		viewPlayer.postDelayed(this, switchSpace);
 	}
 	
 	/**
 	 * 启动
 	 */
 	public void start(){
-		viewPlayer.removeCallbacks(this);
-		viewPlayer.postDelayed(this, switchSpace);
+		if(viewPlayer.isPlaying()){
+			viewPlayer.removeCallbacks(this);
+			viewPlayer.postDelayed(this, switchSpace);
+		}
 	}
 	
 	/**
 	 * 停止
 	 */
 	public void stop(){
-		viewPlayer.removeCallbacks(this);
+		if(viewPlayer.isPlaying()){
+			viewPlayer.removeCallbacks(this);
+		}
 	}
 	
 	/**
