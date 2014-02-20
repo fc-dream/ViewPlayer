@@ -97,9 +97,13 @@ public void onPause() {
 >* 调用setOnSetAdapterListener()方法在监听适配器设置，并在之后进行一些初始化工作
 
 ##Downloads
-**[android-view-player-1.1.2.jar](https://github.com/xiaopansky/Android-ViewPlayer/raw/master/releases/android-view-player-1.1.2.jar)**
+**[android-view-player-1.1.3.jar](https://github.com/xiaopansky/Android-ViewPlayer/raw/master/releases/android-view-player-1.1.3.jar)**
 
-**[android-view-player-1.1.2-with-src.jar](https://github.com/xiaopansky/Android-ViewPlayer/raw/master/releases/android-view-player-1.1.2-with-src.jar)**
+**[android-view-player-1.1.3-with-src.jar](https://github.com/xiaopansky/Android-ViewPlayer/raw/master/releases/android-view-player-1.1.3-with-src.jar)**
+
+##Change Log
+###1.1.3
+>* 调整动画时间设置策略，保证不需要自动播放功能时，不会改变动画持续时间
 
 ##License
 ```java

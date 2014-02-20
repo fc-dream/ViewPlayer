@@ -19,15 +19,14 @@ public class ViewPlayer extends ViewPager {
 	private ViewPlayController viewPlayController;	//播放控制器
 	private OnSetAdapterListener onSetAdapterListener;
 	private ViewPlayMode viewPlayMode = ViewPlayMode.CIRCLE;//播放模式，默认是转圈
+	private int duration = -1;
 
 	public ViewPlayer(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		setAnimationDuration(500);
 	}
 
 	public ViewPlayer(Context context) {
 		super(context);
-		setAnimationDuration(500);
 	}
 	
 	@Override
@@ -51,7 +50,7 @@ public class ViewPlayer extends ViewPager {
 	
 	@Override
 	public boolean dispatchTouchEvent(MotionEvent ev) {
-		if(viewPlayController != null){
+		if(viewPlayController != null && playing){
 			switch (ev.getAction()) {
 				case MotionEvent.ACTION_DOWN: viewPlayController.stop(); break;
 				case MotionEvent.ACTION_UP: viewPlayController.start(); break;
@@ -77,6 +76,9 @@ public class ViewPlayer extends ViewPager {
 		if(viewPlayController != null && !playing){
 			viewPlayController.start();
 			playing = true;
+			if(duration > 0){
+				setAnimationDuration(duration);
+			}
 		}
 	}
 	
@@ -147,14 +149,17 @@ public class ViewPlayer extends ViewPager {
 	 * @param duration
 	 */
 	public void setAnimationDuration(int duration){
-		try {
-			Field field = ViewPager.class.getDeclaredField("mScroller");
-			field.setAccessible(true);
-			FixedSpeedScroller scroller = new FixedSpeedScroller(this.getContext(), new AccelerateDecelerateInterpolator());
-			field.set(this, scroller);
-			scroller.setAnimationDuration(duration);
-		} catch (Exception e) {
-			e.printStackTrace();
+		this.duration = duration;
+		if(duration > 0){
+			try {
+				Field field = ViewPager.class.getDeclaredField("mScroller");
+				field.setAccessible(true);
+				FixedSpeedScroller scroller = new FixedSpeedScroller(this.getContext(), new AccelerateDecelerateInterpolator());
+				field.set(this, scroller);
+				scroller.setAnimationDuration(duration);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	
