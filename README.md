@@ -1,7 +1,6 @@
-![Logo](https://github.com/xiaopansky/Android-ViewPlayer/raw/master/res/drawable-mdpi/ic_launcher.png) Android-ViewPlayer
-===============
+#![Logo](https://github.com/xiaopansky/Android-ViewPlayer/raw/master/res/drawable-mdpi/ic_launcher.png) Android-ViewPlayer
 
-这是Android上一个专门用于轮播View的组件
+这是Android上一个专门用于轮播View的组件，最低兼容Android2.2
 
 ![sample](https://github.com/xiaopansky/Android-ViewPlayer/raw/master/docs/sample.png)
 
@@ -97,18 +96,21 @@ public void onPause() {
 >* 调用setOnSetAdapterListener()方法在监听适配器设置，并在之后进行一些初始化工作
 
 ##Downloads
-**[android-view-player-1.1.3.jar](https://github.com/xiaopansky/Android-ViewPlayer/raw/master/releases/android-view-player-1.1.3.jar)**
+**[android-view-player-1.1.4.jar](https://github.com/xiaopansky/Android-ViewPlayer/raw/master/releases/android-view-player-1.1.4.jar)**
 
-**[android-view-player-1.1.3-with-src.jar](https://github.com/xiaopansky/Android-ViewPlayer/raw/master/releases/android-view-player-1.1.3-with-src.jar)**
+**[android-view-player-1.1.4-with-src.jar](https://github.com/xiaopansky/Android-ViewPlayer/raw/master/releases/android-view-player-1.1.4-with-src.jar)**
 
 ##Change Log
+###1.1.3
+>* 更新版权信息
+
 ###1.1.3
 >* 修复当没有启动播放时，触摸界面后自动开启播放的BUG
 
 ##License
 ```java
 /*
- * Copyright 2013 Peng fei Pan
+ * Copyright (C) 2013 Peng fei Pan <sky@xiaopan.me>
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
