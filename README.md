@@ -101,7 +101,7 @@ public void onPause() {
 **[android-view-player-1.1.4-with-src.jar](https://github.com/xiaopansky/Android-ViewPlayer/raw/master/releases/android-view-player-1.1.4-with-src.jar)**
 
 ##Change Log
-###1.1.3
+###1.1.4
 >* 更新版权信息
 
 ###1.1.3
