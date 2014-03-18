@@ -39,7 +39,7 @@ public class PictureViewPlayer extends FrameLayout {
 		viewPlayer.setOnPageChangeListener(new OnPageChangeListener() {
 			@Override
 			public void onPageSelected(int arg0) {
-				pointViewPlayIndicator.selected(viewPlayer.getRealPosition(arg0));
+				pointViewPlayIndicator.selected(viewPlayer.getRealCurrentItem(arg0));
 			}
 			@Override
 			public void onPageScrolled(int arg0, float arg1, int arg2) {}
@@ -52,7 +52,7 @@ public class PictureViewPlayer extends FrameLayout {
 			public void onSertAdapter() {
 				if(viewPlayer.getAdapter() != null){
 					pointViewPlayIndicator.initIndicator(viewPlayer.getRealCount());
-					pointViewPlayIndicator.selected(viewPlayer.getRealPosition(viewPlayer.getCurrentItem()));
+					pointViewPlayIndicator.selected(viewPlayer.getRealCurrentItem());
 				}
 			}
 		});

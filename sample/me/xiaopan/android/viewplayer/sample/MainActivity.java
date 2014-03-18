@@ -3,7 +3,6 @@ package me.xiaopan.android.viewplayer.sample;
 import java.util.ArrayList;
 import java.util.List;
 
-import me.xiaopan.android.imageloader.ImageLoader;
 import me.xiaopan.android.viewplayer.R;
 import me.xiaopan.android.viewplayer.ViewPlayMode;
 import android.annotation.SuppressLint;
@@ -24,8 +23,6 @@ public class MainActivity extends FragmentActivity {
 		pointViewPlayerCircle = (PictureViewPlayer) findViewById(R.id.pagerPlayer_picturePlayer_circle);
 		pointViewPlayerSwing = (PictureViewPlayer) findViewById(R.id.pagerPlayer_picturePlayer_swing);
 		
-		ImageLoader.getInstance().init(getBaseContext());
-
 		pictureUrls = new ArrayList<String>();
 		for(String url : getResources().getStringArray(R.array.autoPlayGallery_urls2)){
 			pictureUrls.add(url);

@@ -147,15 +147,23 @@ public class ViewPlayer extends ViewPager {
 	
 	/**
 	 * 获取真实位置
-	 * @param position
+	 * @param currentItem
 	 * @return 真实位置
 	 */
-	public int getRealPosition(int position){
+	public int getRealCurrentItem(int currentItem){
 		if(getAdapter() != null && getAdapter() instanceof ViewPlayAdapterInterface){
-			return ((ViewPlayAdapterInterface) getAdapter()).getRealPosition(position);
+			return ((ViewPlayAdapterInterface) getAdapter()).getRealPosition(currentItem);
 		}else{
-			return position;
+			return currentItem;
 		}
+	}
+	
+	/**
+	 * 获取真实位置
+	 * @return 真实位置
+	 */
+	public int getRealCurrentItem(){
+		return getRealCurrentItem(getCurrentItem());
 	}
 
 	/**

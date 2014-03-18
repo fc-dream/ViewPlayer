@@ -29,7 +29,7 @@ public abstract class ViewPlayPagerAdapter extends PagerAdapter implements ViewP
 	public final int getCount() {
 		switch(viewPlayMode){
 			case CIRCLE : 
-				return getRealCount() > 1?getRealCount() * 50:getRealCount();
+				return getRealCount() > 1?getRealCount() * 1000:getRealCount();
 			case SWING :
 				return getRealCount();
 			default : 

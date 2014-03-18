@@ -8,6 +8,9 @@
 >* ViewPlayer继承于ViewPager，所以你可以自定义切换效果
 >* 支持转圈循环播放和摇摆播放两种方式
 
+## Sample Application
+**[Sample Application](https://github.com/xiaopansky/Android-ViewPlayer/raw/master/releases/Android-ViewPlayer_1.1.5.apk)*
+
 ##Usage Guide
 ###1.创建你的PagerAdapter适配器
 实现方式有两种
@@ -58,7 +61,7 @@ public class PicturePlayFragmentStatePagerAdapter extends ViewPlayFragmentStateP
 
 ###2.创建ViewPlayer并设置适配器
 ```java
-ArrayList pictureUrls = new ArrayList<String>();
+ArrayList<String> pictureUrls = new ArrayList<String>();
 for(String url : getResources().getStringArray(R.array.autoPlayGallery_urls2)){
 	pictureUrls.add(url);
 }
@@ -90,17 +93,21 @@ public void onPause() {
 >* 调用setPlayMode()方法设置播放模式（有转圈和摇摆两种可选）
 >* 调用isPlaying()判断是否正在播放
 >* 调用getRealCount()方法获取真实的Item个数
->* 调用getRealPosition()方法获取真实的位置
+>* 调用getRealCurrentItem()方法获取真实的位置
 >* 调用setAnimationDuration()方法设置切换动画持续时间
 >* 调用setSwitchSpace()方法设置切换间隔时间
 >* 调用setOnSetAdapterListener()方法在监听适配器设置，并在之后进行一些初始化工作
 
 ##Downloads
-**[android-view-player-1.1.4.jar](https://github.com/xiaopansky/Android-ViewPlayer/raw/master/releases/android-view-player-1.1.4.jar)**
+**[android-view-player-1.1.5.jar](https://github.com/xiaopansky/Android-ViewPlayer/raw/master/releases/android-view-player-1.1.5.jar)**
 
-**[android-view-player-1.1.4-with-src.jar](https://github.com/xiaopansky/Android-ViewPlayer/raw/master/releases/android-view-player-1.1.4-with-src.jar)**
+**[android-view-player-1.1.5-with-src.jar](https://github.com/xiaopansky/Android-ViewPlayer/raw/master/releases/android-view-player-1.1.5-with-src.jar)**
 
 ##Change Log
+###1.1.5
+>* 优化getRealPosition()方法名称为getRealCurrentItem()
+>* 加大无线循环时总数的大小由，之前的50倍改为1000倍
+
 ###1.1.4
 >* 更新版权信息
 
