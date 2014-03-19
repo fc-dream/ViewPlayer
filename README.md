@@ -9,7 +9,9 @@
 >* 支持转圈循环播放和摇摆播放两种方式
 
 ## Sample Application
-**[Sample Application](https://github.com/xiaopansky/Android-ViewPlayer/raw/master/releases/Android-ViewPlayer_1.1.5.apk)*
+**[Google Play](https://github.com/xiaopansky/Android-ViewPlayer/raw/master/releases/Android-ViewPlayer_1.1.5.apk)**
+
+**[Github](https://github.com/xiaopansky/Android-ViewPlayer/raw/master/releases/Android-ViewPlayer_1.1.5.apk)**
 
 ##Usage Guide
 ###1.创建你的PagerAdapter适配器
@@ -52,7 +54,7 @@ public class PicturePlayFragmentStatePagerAdapter extends ViewPlayFragmentStateP
 			ImageView imageView = new ImageView(getActivity().getBaseContext());
 			imageView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 			imageView.setScaleType(ScaleType.CENTER_CROP);
-			ImageLoader.getInstance().display(getArguments().getString(PARAM_REQUIRED_STRING_PICTURE_URL), imageView);
+			ImageLoader.getInstance(getActivity()).display(getArguments().getString(PARAM_REQUIRED_STRING_PICTURE_URL), imageView, OptionType.VIEW_PLAYER);
 			return imageView;
 		}
 	}
