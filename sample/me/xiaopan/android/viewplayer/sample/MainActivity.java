@@ -3,6 +3,10 @@ package me.xiaopan.android.viewplayer.sample;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.content.Intent;
+import android.net.Uri;
+import android.view.Menu;
+import android.view.MenuItem;
 import me.xiaopan.android.viewplayer.R;
 import me.xiaopan.android.viewplayer.ViewPlayMode;
 import android.annotation.SuppressLint;
@@ -48,8 +52,26 @@ public class MainActivity extends FragmentActivity {
 		pointViewPlayerSwing.getViewPlayer().stop();
 		super.onPause();
 	}
-	
-	public class DepthPageTransformer implements PageTransformer {
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_all, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()){
+            case R.id.menu_github :
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(getString(R.string.url_github)));
+                startActivity(intent);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    public class DepthPageTransformer implements PageTransformer {
 	    private static final float MIN_SCALE = 0.75f;
 	    @SuppressLint("NewApi")
 	    @Override
