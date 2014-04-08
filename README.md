@@ -9,9 +9,9 @@
 >* 支持转圈循环播放和摇摆播放两种方式
 
 ## Sample Application
-**[Google Play](https://github.com/xiaopansky/Android-ViewPlayer/raw/master/releases/Android-ViewPlayer_1.1.5.apk)**
+**[Get it on Google Play](https://play.google.com/store/apps/details?id=me.xiaopan.android.viewplayer)**
 
-**[Github](https://github.com/xiaopansky/Android-ViewPlayer/raw/master/releases/Android-ViewPlayer_1.1.5.apk)**
+**[Download it on Github](https://github.com/xiaopansky/Android-ViewPlayer/raw/master/releases/Android-ViewPlayer_1.1.5.1.apk)**
 
 ##Usage Guide
 ###1.创建你的PagerAdapter适配器
