@@ -1,9 +1,11 @@
 package me.xiaopan.android.viewplayer.sample;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import me.xiaopan.android.imageloader.ImageLoader;
 import me.xiaopan.android.viewplayer.ViewPlayFragmentStatePagerAdapter;
+import me.xiaopan.android.viewplayer.sample.MyApplication.OptionType;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -16,12 +18,20 @@ import android.widget.ImageView.ScaleType;
 /**
  * 图片播放适配器
  */
-public class PicturePlayFragmentStatePagerAdapter extends ViewPlayFragmentStatePagerAdapter {
+public class PicturePagerAdapter extends ViewPlayFragmentStatePagerAdapter {
 	private List<String> pictures;//图片列表
 
-	public PicturePlayFragmentStatePagerAdapter(FragmentManager fm, List<String> pictureUrls) {
+	public PicturePagerAdapter(FragmentManager fm, List<String> pictureUrls) {
 		super(fm);
 		this.pictures = pictureUrls;
+	}
+
+	public PicturePagerAdapter(FragmentManager fm, String... pictureUrls) {
+		super(fm);
+		pictures = new ArrayList<String>(pictureUrls.length);
+		for(String url : pictureUrls){
+			pictures.add(url);
+		}
 	}
 
 	@Override

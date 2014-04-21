@@ -1,0 +1,38 @@
+package me.xiaopan.android.viewplayer.sample;
+
+import me.xiaopan.android.viewplayer.R;
+import me.xiaopan.android.viewplayer.sample.FragmentListPagerAdapter.TitleFragment;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+public class CircleFragment extends Fragment implements TitleFragment{
+	private PictureViewPlayer pictureViewPlayer;
+	
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		View view = inflater.inflate(R.layout.picture_player, null);
+		pictureViewPlayer = (PictureViewPlayer) view.findViewById(R.id.viewPager);
+		pictureViewPlayer.getViewPlayer().setAdapter(new PicturePagerAdapter(getChildFragmentManager(), getResources().getStringArray(R.array.autoPlayGallery_urls2)));
+		return view;
+	}
+
+	@Override
+	public CharSequence pageTitle() {
+		return "转圈";
+	}
+
+	@Override
+	public void onPause() {
+		super.onPause();
+		pictureViewPlayer.getViewPlayer().stop();
+	}
+
+	@Override
+	public void onResume() {
+		super.onResume();
+		pictureViewPlayer.getViewPlayer().start();
+	}
+}

@@ -11,4 +11,8 @@ public class MyApplication extends Application {
 		super.onCreate();
 		ImageLoader.getInstance(getBaseContext()).getConfiguration().putOptions(OptionType.VIEW_PLAYER, new Options(getBaseContext()).setLoadingDrawableResId(R.drawable.image_loading).setFailureDrawableResId(R.drawable.image_loading));
 	}
+	
+	public enum OptionType {
+		VIEW_PLAYER;
+	}
 }
