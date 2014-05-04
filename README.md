@@ -106,6 +106,9 @@ public void onPause() {
 **[android-view-player-1.1.5-with-src.jar](https://github.com/xiaopansky/Android-ViewPlayer/raw/master/releases/android-view-player-1.1.5-with-src.jar)**
 
 ##Change Log
+###1.1.6
+>* 优化自带ViewPlayIndicator的效果，默认居中，默认也不再设置内边距和外边距
+
 ###1.1.5
 >* 优化getRealPosition()方法名称为getRealCurrentItem()
 >* 加大无线循环时总数的大小由，之前的50倍改为1000倍

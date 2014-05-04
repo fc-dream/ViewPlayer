@@ -18,6 +18,7 @@ package me.xiaopan.android.viewplayer;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -28,41 +29,64 @@ import android.widget.LinearLayout;
 public class ViewPlayIndicator extends LinearLayout {
 	private int lastCheckedPosition;//上次选中的图标的位置
 	private int indicatorDrawableResdId;	//指示器图片
-	
-	public ViewPlayIndicator(Context context) {
-		super(context);
-	}
+	private int indicatorDrawableMargin;	//外边距
+	private int count;
 	
 	public ViewPlayIndicator(Context context, AttributeSet attrs) {
 		super(context, attrs);
+		setGravity(Gravity.CENTER);
+	}
+	
+	public ViewPlayIndicator(Context context) {
+		this(context, null);
 	}
 	
 	/**
-	 * 初始化指示器
-	 * @param size
+	 * 设置图标总数
+	 * @param count
 	 */
-	public void initIndicator(int size) {
-		removeAllViews();
-		if(size > 1 && indicatorDrawableResdId != 0){
-			setPadding(8, 8, 8, 8);
-			for(int w = 0; w < size; w++){//然后初始化所有的图标并将其放进存放图标的布局中
-				try{
+	public void setCount(int count) {
+		if(count != this.count){
+			this.count = count;
+			removeAllViews();
+			if(count > 1 && indicatorDrawableResdId != 0){
+				for(int w = 0; w < count; w++){//然后初始化所有的图标并将其放进存放图标的布局中
 					ImageView image = new ImageView(getContext());
 					LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-					params.setMargins(8, 8, 8, 8);//设置指示器内图标的外边距
+					params.setMargins(indicatorDrawableMargin, indicatorDrawableMargin, indicatorDrawableMargin, indicatorDrawableMargin);//设置指示器内图标的外边距
 					image.setLayoutParams(params);
 					image.setImageResource(indicatorDrawableResdId);
 					addView(image);
-				}catch(Throwable throwable){
-					throwable.printStackTrace();
 				}
+				setVisibility(View.VISIBLE);
+			}else{
+				setVisibility(View.GONE);
 			}
-			setVisibility(View.VISIBLE);
-		}else{
-			setVisibility(View.GONE);
 		}
 	}
-	
+
+	/**
+	 * 设置指示图标图片
+	 * @param indicatorDrawableResdId
+	 */
+	public void setIndicatorDrawableResId(int indicatorDrawableResdId) {
+		this.indicatorDrawableResdId = indicatorDrawableResdId;
+		int oldCount = count;
+		count = 0;
+		setCount(oldCount);
+	}
+
+	/**
+	 * 设置图标外边距
+	 * @param indicatorDrawableMargin
+	 */
+	public void setIndicatorDrawableMargin(int indicatorDrawableMargin) {
+		this.indicatorDrawableMargin = indicatorDrawableMargin;
+		int oldCount = count;
+		count = 0;
+		setCount(oldCount);
+	}
+
 	/**
 	 * 选中
 	 * @param selectedItemPosition
@@ -73,13 +97,5 @@ public class ViewPlayIndicator extends LinearLayout {
 			(getChildAt(selectedItemPosition)).setSelected(true);//再将当前的选中
 			lastCheckedPosition = selectedItemPosition;//记录本次选中的
 		}
-	}
-
-	/**
-	 * 设置指示图标图片
-	 * @param indicatorDrawableResdId
-	 */
-	public void setIndicatorDrawableResId(int indicatorDrawableResdId) {
-		this.indicatorDrawableResdId = indicatorDrawableResdId;
 	}
 }

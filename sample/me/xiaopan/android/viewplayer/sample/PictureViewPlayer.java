@@ -51,7 +51,8 @@ public class PictureViewPlayer extends FrameLayout {
 			@Override
 			public void onSertAdapter() {
 				if(viewPlayer.getAdapter() != null){
-					pointViewPlayIndicator.initIndicator(viewPlayer.getRealCount());
+					pointViewPlayIndicator.setIndicatorDrawableMargin(8);
+					pointViewPlayIndicator.setCount(viewPlayer.getRealCount());
 					pointViewPlayIndicator.selected(viewPlayer.getRealCurrentItem());
 				}
 			}
