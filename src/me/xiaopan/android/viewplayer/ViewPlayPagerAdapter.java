@@ -49,6 +49,9 @@ public abstract class ViewPlayPagerAdapter extends PagerAdapter implements ViewP
 	
 	@Override
 	public final int getRealPosition(int position){
+		if(getRealCount() <= 0){
+			return 0;
+		}
 		switch(viewPlayMode){
 			case CIRCLE : 
 				return position % getRealCount();

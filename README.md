@@ -101,11 +101,14 @@ public void onPause() {
 >* 调用setOnSetAdapterListener()方法在监听适配器设置，并在之后进行一些初始化工作
 
 ##Downloads
-**[android-view-player-1.1.5.jar](https://github.com/xiaopansky/Android-ViewPlayer/raw/master/releases/android-view-player-1.1.5.jar)**
+**[android-view-player-1.1.7.jar](https://github.com/xiaopansky/Android-ViewPlayer/raw/master/releases/android-view-player-1.1.7.jar)**
 
-**[android-view-player-1.1.5-with-src.jar](https://github.com/xiaopansky/Android-ViewPlayer/raw/master/releases/android-view-player-1.1.5-with-src.jar)**
+**[android-view-player-1.1.7-with-src.jar](https://github.com/xiaopansky/Android-ViewPlayer/raw/master/releases/android-view-player-1.1.7-with-src.jar)**
 
 ##Change Log
+###1.1.7
+>* 修复当getCount()为0时调用getRealPosition()方法发生异常的BUG
+
 ###1.1.6
 >* 优化自带ViewPlayIndicator的效果，默认居中，默认也不再设置内边距和外边距
 

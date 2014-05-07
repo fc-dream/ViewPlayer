@@ -44,6 +44,9 @@ public abstract class ViewPlayFragmentStatePagerAdapter extends FragmentStatePag
 	
 	@Override
 	public int getRealPosition(int position){
+		if(getRealCount() <= 0){
+			return 0;
+		}
 		switch(viewPlayMode){
 			case CIRCLE : 
 				return position % getRealCount();
