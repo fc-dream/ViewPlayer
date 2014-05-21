@@ -1,8 +1,8 @@
-#![Logo](https://github.com/xiaopansky/Android-ViewPlayer/raw/master/res/drawable-mdpi/ic_launcher.png) Android-ViewPlayer
+#![Logo](https://github.com/xiaopansky/ViewPlayer/raw/master/res/drawable-mdpi/ic_launcher.png) ViewPlayer
 
 这是Android上一个专门用于轮播View的组件，最低兼容Android2.2
 
-![sample](https://github.com/xiaopansky/Android-ViewPlayer/raw/master/docs/sample.png)
+![sample](https://github.com/xiaopansky/ViewPlayer/raw/master/docs/sample.png)
 
 ##Features
 >* ViewPlayer继承于ViewPager，所以你可以自定义切换效果
@@ -11,7 +11,7 @@
 ## Sample Application
 **[Get it on Google Play](https://play.google.com/store/apps/details?id=me.xiaopan.android.viewplayer)**
 
-**[Download it on Github](https://github.com/xiaopansky/Android-ViewPlayer/raw/master/releases/Android-ViewPlayer_1.1.5.1.apk)**
+**[Download it on Github](https://github.com/xiaopansky/ViewPlayer/raw/master/releases/ViewPlayer_1.1.5.1.apk)**
 
 ##Usage Guide
 ###1.创建你的PagerAdapter适配器
@@ -101,9 +101,9 @@ public void onPause() {
 >* 调用setOnSetAdapterListener()方法在监听适配器设置，并在之后进行一些初始化工作
 
 ##Downloads
-**[android-view-player-1.1.7.jar](https://github.com/xiaopansky/Android-ViewPlayer/raw/master/releases/android-view-player-1.1.7.jar)**
+**[android-view-player-1.1.7.jar](https://github.com/xiaopansky/ViewPlayer/raw/master/releases/android-view-player-1.1.7.jar)**
 
-**[android-view-player-1.1.7-with-src.jar](https://github.com/xiaopansky/Android-ViewPlayer/raw/master/releases/android-view-player-1.1.7-with-src.jar)**
+**[android-view-player-1.1.7-with-src.jar](https://github.com/xiaopansky/ViewPlayer/raw/master/releases/android-view-player-1.1.7-with-src.jar)**
 
 ##Change Log
 ###1.1.7
